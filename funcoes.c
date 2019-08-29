@@ -100,12 +100,32 @@ void fibonacci(int num){
 	
 }
 
+int fatorial(int num){
+	int i = 1, fat = 1;
+	while(i<=num){
+		fat = fat*i;
+		i++;
+	}
+	return fat;
+}
+
 int main(){
-	int num,a = 0, b = 1 , i =0;
+	int num, i=1;
+	float soma = 0;
 	printf("Digite um numero\n");
 	scanf("%d", &num);
+	while(i<=num)
+	{
+		if(i%2==0){
+			soma = soma - (float) 1/i;
+		}else{
+			
+			soma = soma + (float) 1/i;
+		}
+		i++;
+	}
 	
-	fibonacci(num);
+	printf("\n%f\n",soma);
 	
 	return 0;
 }
