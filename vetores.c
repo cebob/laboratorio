@@ -85,17 +85,46 @@ int produto_escalar(int * x, int *  y, int n){
 }
 
 void ocorrencias(float * x, int n){
-	int i, j, count;
+	int i, j, count=1;
 	float temp;
 	for(i=0;i<n;i++){
-		temp = x[i];
-		for(j=i+1;j<n;j++){
-			if(temp == v[j]){
-				count++;
-			}
+		for(j=i-1;j>=0 && x[i] != x[j] ;j--){
+		}
+		if(x[i] != x[j]){
+			temp = x[i];
+			for(j=i+1;j<n;j++){
+				if(temp == x[j]){
+					count++;
+				}
+			}	
+			printf("%f - %d\n", x[i], count);
+			count = 1;
 		}
 	}
 }
+
+void ordenacao(int * x, int * y, int n){
+	
+	int * vetor = (int *) malloc(sizeof(int) * 2 * n);
+	
+	int i, j=0, k=0;
+	
+	for(i=0;i<2*n;i++){
+		if(x[j] < y[k]){
+			vetor[i] = x[j];
+			j++;
+		}else{
+			vetor[i] = y[k];
+			k++;
+		}
+	}
+	
+	for(i=0;i<2*n;i++){
+		printf("%d\n", vetor[i]);
+	}
+	
+}
+
 
 int main(){
 	int n;
