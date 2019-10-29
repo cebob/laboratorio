@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 float media(float * vetor, int n){
 		
@@ -110,7 +111,13 @@ void ordenacao(int * x, int * y, int n){
 	int i, j=0, k=0;
 	
 	for(i=0;i<2*n;i++){
-		if(x[j] < y[k]){
+		if(j > (n-1) ){
+			vetor[i] = y[k];
+			k++;
+		}else if(k > (n-1) ){
+			vetor[i] = x[j];
+			j++;
+		}else if(x[j] < y[k]){
 			vetor[i] = x[j];
 			j++;
 		}else{
@@ -125,19 +132,33 @@ void ordenacao(int * x, int * y, int n){
 	
 }
 
-
-int main(){
-	int n;
-	printf("Digite a quantidade de numeros: ");
-	scanf("%d",&n);
-	float * vetor = (float*) malloc(sizeof(float) * n);
-	int i;
-	for(i=0;i<n;i++){
-		printf("Digite o numero real: ");
-		scanf("%f", &vetor[i]);
+void segmentos(int * x, int n){
+	
+	int tam = n % 2 == 0 ? n/2 : (n+1)/2;
+	
+	int j, m, i, k, count = 0;
+	
+	for(m=1; m<tam; m++){
+		for(i=0; i < n;i++){
+			count =0;
+			for(k=i;k<i+m;k++){
+				if(x[k] == x[k+m]){
+					count++;
+				}
+			}
+			if(count == m){
+				printf("i=%d m=%d", i, m);
+			}
+		}
 	}
 	
-	printf("%f ", media(vetor,n));
+	
+}
+
+int main(){
+	int vetor[] = {7, 9, 8, 5, 4, 5, 4, 8, 6};
+	
+	segmentos(vetor, 9);
 	
 
 	return 0;
